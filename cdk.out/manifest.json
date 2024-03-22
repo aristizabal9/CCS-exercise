@@ -1,0 +1,1411 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "CcsExerciseCoreStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CcsExerciseCoreStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CcsExerciseCoreStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CcsExerciseCoreStack.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "env": "DEV",
+          "project": "ccs-001"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d5b279a9bddca7201dfe47f9fb745b24bd2edd7c6c87a1c44f6dcf77d3f187dd.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CcsExerciseCoreStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CcsExerciseCoreStack.assets"
+      ],
+      "metadata": {
+        "/CcsExerciseCoreStack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "env",
+                "Value": "DEV"
+              },
+              {
+                "Key": "project",
+                "Value": "ccs-001"
+              }
+            ]
+          }
+        ],
+        "/CcsExerciseCoreStack/CrudCoreFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudCoreFunctionServiceRole5F4CBE83"
+          }
+        ],
+        "/CcsExerciseCoreStack/CrudCoreFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudCoreFunctionE832C5FC"
+          }
+        ],
+        "/CcsExerciseCoreStack/CrudCoreUserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudCoreUserPoolFD818991"
+          }
+        ],
+        "/CcsExerciseCoreStack/CrudCoreClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudCoreClient4153BAE7"
+          }
+        ],
+        "/CcsExerciseCoreStack/CrudCoreAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudCoreAuthorizerB0694699"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiB0451A24"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiCloudWatchRole3D3E3A2F"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiAccount344CB8B7"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiDeployment4F36329Ba102ce871a5896350037f122d3007b80"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiDeploymentStageprod008E845B"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApiEndpointEECFCA1D"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomers4F0FD650"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/GET/ApiPermission.CcsExerciseCoreStackCoreApiB819FE30.GET..customers": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersGETApiPermissionCcsExerciseCoreStackCoreApiB819FE30GETcustomers89354852"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/GET/ApiPermission.Test.CcsExerciseCoreStackCoreApiB819FE30.GET..customers": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersGETApiPermissionTestCcsExerciseCoreStackCoreApiB819FE30GETcustomers7033FBCA"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersGETF16E45E9"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/POST/ApiPermission.CcsExerciseCoreStackCoreApiB819FE30.POST..customers": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersPOSTApiPermissionCcsExerciseCoreStackCoreApiB819FE30POSTcustomersAB1B1670"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/POST/ApiPermission.Test.CcsExerciseCoreStackCoreApiB819FE30.POST..customers": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersPOSTApiPermissionTestCcsExerciseCoreStackCoreApiB819FE30POSTcustomersC57AFB52"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersPOST2A62A963"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersid73F92449"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/GET/ApiPermission.CcsExerciseCoreStackCoreApiB819FE30.GET..customers.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidGETApiPermissionCcsExerciseCoreStackCoreApiB819FE30GETcustomersid04AC9B58"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/GET/ApiPermission.Test.CcsExerciseCoreStackCoreApiB819FE30.GET..customers.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidGETApiPermissionTestCcsExerciseCoreStackCoreApiB819FE30GETcustomersid04CB1027"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidGETF69DE045"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/DELETE/ApiPermission.CcsExerciseCoreStackCoreApiB819FE30.DELETE..customers.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidDELETEApiPermissionCcsExerciseCoreStackCoreApiB819FE30DELETEcustomersidCA1023CC"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/DELETE/ApiPermission.Test.CcsExerciseCoreStackCoreApiB819FE30.DELETE..customers.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidDELETEApiPermissionTestCcsExerciseCoreStackCoreApiB819FE30DELETEcustomersid1E2F1884"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreApi/Default/customers/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreApicustomersidDELETEA8E4CC28"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreSecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreSecretD41E526A"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreSecret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreSecretAttachment4827D262"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreDbCluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreDbCluster0D70995F"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminRule5278F362"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminRule/AllowEventRuleCcsExerciseCoreStackCustomerAdminFunctionBAE94895": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminRuleAllowEventRuleCcsExerciseCoreStackCustomerAdminFunctionBAE94895EFA9C08A"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminRuleDLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminRuleDLQE3636912"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminRuleDLQ/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminRuleDLQPolicyA1BF6CDB"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminFunctionServiceRoleAF7B535F"
+          }
+        ],
+        "/CcsExerciseCoreStack/CustomerAdminFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomerAdminFunction4EA27316"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationRule1BC291BB"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationRule/AllowEventRuleCcsExerciseCoreStackEventNotificationFunction82F5E212": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationRuleAllowEventRuleCcsExerciseCoreStackEventNotificationFunction82F5E212D0F8F855"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationRuleDLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationRuleDLQ18CE9698"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationRuleDLQ/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationRuleDLQPolicy690B73B9"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationFunctionServiceRoleDED56C33"
+          }
+        ],
+        "/CcsExerciseCoreStack/EventNotificationFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventNotificationFunctionD9D8E104"
+          }
+        ],
+        "/CcsExerciseCoreStack/corewebapplication-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "corewebapplicationbucketE10EFDEF"
+          }
+        ],
+        "/CcsExerciseCoreStack/corewebapplication-bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "corewebapplicationbucketPolicyCF0EF917"
+          }
+        ],
+        "/CcsExerciseCoreStack/corewebapplication-bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "corewebapplicationbucketAutoDeleteObjectsCustomResourceFB8C2ECA"
+          }
+        ],
+        "/CcsExerciseCoreStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/CcsExerciseCoreStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreWebApplication-oai/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreWebApplicationoai1A04BB63"
+          }
+        ],
+        "/CcsExerciseCoreStack/CoreWebApplication/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CoreWebApplication73466DD2"
+          }
+        ],
+        "/CcsExerciseCoreStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CcsExerciseCoreStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CcsExerciseCoreStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CcsExerciseCoreStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CcsExerciseCoreStack"
+    },
+    "CcsExerciseAdminStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CcsExerciseAdminStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CcsExerciseAdminStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CcsExerciseAdminStack.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "env": "DEV",
+          "project": "ccs-001"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/94eeca6e5dc558d219f4479a967c604923b040f03f6063cb5ed2289d33a2b196.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CcsExerciseAdminStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CcsExerciseAdminStack.assets"
+      ],
+      "metadata": {
+        "/CcsExerciseAdminStack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "env",
+                "Value": "DEV"
+              },
+              {
+                "Key": "project",
+                "Value": "ccs-001"
+              }
+            ]
+          }
+        ],
+        "/CcsExerciseAdminStack/CrudTrucksAdminFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudTrucksAdminFunctionServiceRoleA653866B"
+          }
+        ],
+        "/CcsExerciseAdminStack/CrudTrucksAdminFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudTrucksAdminFunctionServiceRoleDefaultPolicyA0A944D3"
+          }
+        ],
+        "/CcsExerciseAdminStack/CrudTrucksAdminFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudTrucksAdminFunctionAFC52BF3"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "TrucksAdminTable259F787D"
+            }
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminTable259F787D"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminUserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminUserPool854FB8D7"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminClientEABCDDE5"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminAuthorizer3AD5D526"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiDA497A60"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiCloudWatchRoleCC6B974D"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiAccount3FB60003"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiDeploymentC9A53E6942405b1bad278581466fb3edc5c4e5f2"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiDeploymentStageprod2FBD9108"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApiEndpointDBB7D880"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksE6689FCD"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/GET/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksGETApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872GETtrucks959DD502"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/GET/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksGETApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872GETtrucksCD17BF1A"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksGETC21F663A"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/POST/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.POST..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksPOSTApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872POSTtrucks8CD8FD95"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/POST/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.POST..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksPOSTApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872POSTtrucks7357397F"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksPOSTB7BB76F3"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksid14B1CFD3"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/GET/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidGETApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872GETtrucksid937D1F14"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/GET/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidGETApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872GETtrucksidC3A2C45B"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidGET33A11672"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/DELETE/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.DELETE..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidDELETEApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872DELETEtrucksid70FF0BA7"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/DELETE/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.DELETE..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidDELETEApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872DELETEtrucksid0258FAD0"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/trucks/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApitrucksidDELETE34009F78"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/dashboards/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApidashboards9C723744"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/dashboards/GET/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..dashboards": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApidashboardsGETApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872GETdashboards68ACA1E5"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/dashboards/GET/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..dashboards": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApidashboardsGETApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872GETdashboardsB5F276DF"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/dashboards/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApidashboardsGETEF13DBFA"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/bills/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApibills74A2CBBB"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/bills/GET/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..bills": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApibillsGETApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872GETbills2004B2B5"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/bills/GET/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..bills": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApibillsGETApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872GETbills7D1E7982"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/bills/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApibillsGET420DE0BD"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsEC469F48"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/POST/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.POST..alerts": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsPOSTApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872POSTalerts6F5E3256"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/POST/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.POST..alerts": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsPOSTApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872POSTalerts5FBEB117"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsPOSTEAE85DED"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/GET/ApiPermission.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..alerts": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsGETApiPermissionCcsExerciseAdminStackTrucksAdminApi0FDC8872GETalerts87EE396F"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/GET/ApiPermission.Test.CcsExerciseAdminStackTrucksAdminApi0FDC8872.GET..alerts": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsGETApiPermissionTestCcsExerciseAdminStackTrucksAdminApi0FDC8872GETalerts6E925C82"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminApi/Default/alerts/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminApialertsGET4C073474"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksDashboardsFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksDashboardsFunctionServiceRole0F1B6746"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksDashboardsFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksDashboardsFunction960D52B0"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksBillsFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksBillsFunctionServiceRoleF2953187"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksBillsFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksBillsFunction619A3F0F"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAlertsFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAlertsFunctionServiceRole2FD44525"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAlertsFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAlertsFunction3614F7F5"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminRuleED002F20"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminRule/AllowEventRuleCcsExerciseAdminStackTruckAdminFunction2C94FF05": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminRuleAllowEventRuleCcsExerciseAdminStackTruckAdminFunction2C94FF0549716E3E"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminRuleDLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminRuleDLQ53F665E9"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminRuleDLQ/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminRuleDLQPolicyE300081D"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminFunctionServiceRole9E79FD18"
+          }
+        ],
+        "/CcsExerciseAdminStack/TruckAdminFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TruckAdminFunction7A8DCF90"
+          }
+        ],
+        "/CcsExerciseAdminStack/trucksadminwebapplication-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "trucksadminwebapplicationbucket561BD5AA"
+          }
+        ],
+        "/CcsExerciseAdminStack/trucksadminwebapplication-bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "trucksadminwebapplicationbucketPolicy67B859AF"
+          }
+        ],
+        "/CcsExerciseAdminStack/trucksadminwebapplication-bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "trucksadminwebapplicationbucketAutoDeleteObjectsCustomResourceB956C55E"
+          }
+        ],
+        "/CcsExerciseAdminStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/CcsExerciseAdminStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminWebApplication-oai/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminWebApplicationoai401630EA"
+          }
+        ],
+        "/CcsExerciseAdminStack/TrucksAdminWebApplication/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TrucksAdminWebApplication164BCB9C"
+          }
+        ],
+        "/CcsExerciseAdminStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CcsExerciseAdminStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CcsExerciseAdminStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CcsExerciseAdminStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CcsExerciseAdminStack"
+    },
+    "CcsExerciseOnboardingStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CcsExerciseOnboardingStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CcsExerciseOnboardingStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CcsExerciseOnboardingStack.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "env": "DEV",
+          "project": "ccs-001"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/dbaff9ff959613982555960283ee0130bafdcbc2003f1813670edfeb0f8918e9.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CcsExerciseOnboardingStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CcsExerciseOnboardingStack.assets"
+      ],
+      "metadata": {
+        "/CcsExerciseOnboardingStack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "env",
+                "Value": "DEV"
+              },
+              {
+                "Key": "project",
+                "Value": "ccs-001"
+              }
+            ]
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CrudOnboardingFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudOnboardingFunctionServiceRole319A592F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CrudOnboardingFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudOnboardingFunctionServiceRoleDefaultPolicyB3562B3B"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CrudOnboardingFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrudOnboardingFunction0E26C704"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OnboardingTable9FE21C19"
+            }
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingTable9FE21C19"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingUserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingUserPool3945B2E6"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingClient4BF937D8"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingAuthorizer49D92508"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApi9093F73F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApiCloudWatchRoleE7541C5D"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApiAccountBDBBF500"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApiDeploymentA619C539395592db8e879f699dbb4a70f2823418"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApiDeploymentStageprod0CBF7864"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApiEndpointFDF673B9"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksDE410494"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/GET/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.GET..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksGETApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927GETtrucks0FD42F07"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/GET/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.GET..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksGETApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927GETtrucks4AD7CF30"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksGET93D3551A"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/POST/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksPOSTApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927POSTtrucks12D3F9CF"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/POST/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..trucks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksPOSTApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927POSTtrucks59699C6F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksPOST9CB76A94"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidF8F9AC6C"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/GET/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.GET..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidGETApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927GETtrucksid4F38FD09"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/GET/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.GET..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidGETApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927GETtrucksid0528C004"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidGET059E2210"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/DELETE/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.DELETE..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidDELETEApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927DELETEtrucksidBE49A9AA"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/DELETE/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.DELETE..trucks.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidDELETEApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927DELETEtrucksidC6F698A0"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/trucks/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApitrucksidDELETE9EAAA61A"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/rules/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApirulesCD498DE6"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/rules/POST/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..rules": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApirulesPOSTApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927POSTrulesDF04B004"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/rules/POST/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..rules": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApirulesPOSTApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927POSTrules3ACEFFC2"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/rules/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApirulesPOSTCCAE4DCB"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/finance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApifinance69E8A70A"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/finance/POST/ApiPermission.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..finance": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApifinancePOSTApiPermissionCcsExerciseOnboardingStackOnboardingApi6D59A927POSTfinance0784E7B1"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/finance/POST/ApiPermission.Test.CcsExerciseOnboardingStackOnboardingApi6D59A927.POST..finance": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApifinancePOSTApiPermissionTestCcsExerciseOnboardingStackOnboardingApi6D59A927POSTfinance401CF6BE"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingApi/Default/finance/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingApifinancePOST915D5D83"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/RulesValidationFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RulesValidationFunctionServiceRole741DC39C"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/RulesValidationFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RulesValidationFunctionC60293C1"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/FinanceValidationFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FinanceValidationFunctionServiceRoleC6623D51"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/FinanceValidationFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FinanceValidationFunction64448614"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationRuleCAC4E95F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationRule/AllowEventRuleCcsExerciseOnboardingStackIdentityValidationFunctionAA0B5C52": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationRuleAllowEventRuleCcsExerciseOnboardingStackIdentityValidationFunctionAA0B5C523D06AFED"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationRuleDLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationRuleDLQ3A079A90"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationRuleDLQ/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationRuleDLQPolicy8AECF1DC"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationFunctionServiceRole55B74BD7"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/IdentityValidationFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityValidationFunction0791017F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/onboardingwebapplication-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "onboardingwebapplicationbucket149297C0"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/onboardingwebapplication-bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "onboardingwebapplicationbucketPolicy15A780B6"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/onboardingwebapplication-bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "onboardingwebapplicationbucketAutoDeleteObjectsCustomResource2CBA1784"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingWebApplication-oai/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingWebApplicationoaiDE719FC5"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/OnboardingWebApplication/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnboardingWebApplication25182733"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CcsExerciseOnboardingStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CcsExerciseOnboardingStack"
+    },
+    "CcsExerciseCollectorStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CcsExerciseCollectorStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CcsExerciseCollectorStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CcsExerciseCollectorStack.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "env": "DEV",
+          "project": "ccs-001"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/59efc1220196747fc16c1273c815497e70d48f8741ee159599e4f5a08dd9059f.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CcsExerciseCollectorStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CcsExerciseCollectorStack.assets"
+      ],
+      "metadata": {
+        "/CcsExerciseCollectorStack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "env",
+                "Value": "DEV"
+              },
+              {
+                "Key": "project",
+                "Value": "ccs-001"
+              }
+            ]
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorStream/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorStream016F0836"
+          }
+        ],
+        "/CcsExerciseCollectorStack/AwsCdkKinesisEncryptedStreamsUnsupportedRegions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AwsCdkKinesisEncryptedStreamsUnsupportedRegions"
+          }
+        ],
+        "/CcsExerciseCollectorStack/iotcollector-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "iotcollectorbucketFA2C37C1"
+          }
+        ],
+        "/CcsExerciseCollectorStack/iotcollector-bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "iotcollectorbucketPolicy94982641"
+          }
+        ],
+        "/CcsExerciseCollectorStack/iotcollector-bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "iotcollectorbucketAutoDeleteObjectsCustomResource895A46C8"
+          }
+        ],
+        "/CcsExerciseCollectorStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/CcsExerciseCollectorStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Service Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamServiceRole1693FD15"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Service Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamServiceRoleDefaultPolicy968B0088"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/S3 Destination Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamS3DestinationRoleD4F60690"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/S3 Destination Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamS3DestinationRoleDefaultPolicyE1231DAB"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamLogGroup4D36A9F5"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/LogGroup/S3Destination/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStreamLogGroupS3Destination8B3FA023"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTCollectorDeliveryStream05219BDE"
+          }
+        ],
+        "/CcsExerciseCollectorStack/@aws-cdk--aws-kinesisfirehose.CidrBlocks": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awscdkawskinesisfirehoseCidrBlocks"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IotKinesisRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IotKinesisRuleCC130866"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IotKinesisRule/TopicRuleActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IotKinesisRuleTopicRuleActionRole3F299C71"
+          }
+        ],
+        "/CcsExerciseCollectorStack/IotKinesisRule/TopicRuleActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IotKinesisRuleTopicRuleActionRoleDefaultPolicy5C170C0E"
+          }
+        ],
+        "/CcsExerciseCollectorStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CcsExerciseCollectorStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CcsExerciseCollectorStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CcsExerciseCollectorStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CcsExerciseCollectorStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

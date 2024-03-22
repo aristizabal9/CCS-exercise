@@ -1,0 +1,1004 @@
+{
+ "Resources": {
+  "IoTCollectorStream016F0836": {
+   "Type": "AWS::Kinesis::Stream",
+   "Properties": {
+    "Name": "IoTCollectorStream",
+    "RetentionPeriodHours": 24,
+    "StreamEncryption": {
+     "Fn::If": [
+      "AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "EncryptionType": "KMS",
+       "KeyId": "alias/aws/kinesis"
+      }
+     ]
+    },
+    "StreamModeDetails": {
+     "StreamMode": "ON_DEMAND"
+    },
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorStream/Resource"
+   }
+  },
+  "iotcollectorbucketFA2C37C1": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     },
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ],
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/iotcollector-bucket/Resource"
+   }
+  },
+  "iotcollectorbucketPolicy94982641": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "iotcollectorbucketFA2C37C1"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "iotcollectorbucketFA2C37C1",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "iotcollectorbucketFA2C37C1",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "iotcollectorbucketFA2C37C1",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "iotcollectorbucketFA2C37C1",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/iotcollector-bucket/Policy/Resource"
+   }
+  },
+  "iotcollectorbucketAutoDeleteObjectsCustomResource895A46C8": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "iotcollectorbucketFA2C37C1"
+    }
+   },
+   "DependsOn": [
+    "iotcollectorbucketPolicy94982641"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/iotcollector-bucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "6c1e9b465fa4b2d651dbc9ce3e732d8702a7b19137327684a71d89f1d355f1a2.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "iotcollectorbucketFA2C37C1"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.6c1e9b465fa4b2d651dbc9ce3e732d8702a7b19137327684a71d89f1d355f1a2",
+    "aws:asset:property": "Code"
+   }
+  },
+  "IoTCollectorDeliveryStreamServiceRole1693FD15": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "firehose.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Service Role/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStreamServiceRoleDefaultPolicy968B0088": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "kinesis:DescribeStreamSummary",
+        "kinesis:GetRecords",
+        "kinesis:GetShardIterator",
+        "kinesis:ListShards",
+        "kinesis:SubscribeToShard",
+        "kinesis:DescribeStream",
+        "kinesis:ListStreams",
+        "kinesis:DescribeStreamConsumer"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IoTCollectorStream016F0836",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IoTCollectorDeliveryStreamServiceRoleDefaultPolicy968B0088",
+    "Roles": [
+     {
+      "Ref": "IoTCollectorDeliveryStreamServiceRole1693FD15"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Service Role/DefaultPolicy/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStreamS3DestinationRoleD4F60690": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "firehose.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/S3 Destination Role/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStreamS3DestinationRoleDefaultPolicyE1231DAB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "iotcollectorbucketFA2C37C1",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "iotcollectorbucketFA2C37C1",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IoTCollectorDeliveryStreamLogGroup4D36A9F5",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IoTCollectorDeliveryStreamS3DestinationRoleDefaultPolicyE1231DAB",
+    "Roles": [
+     {
+      "Ref": "IoTCollectorDeliveryStreamS3DestinationRoleD4F60690"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/S3 Destination Role/DefaultPolicy/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStreamLogGroup4D36A9F5": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 731,
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/LogGroup/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStreamLogGroupS3Destination8B3FA023": {
+   "Type": "AWS::Logs::LogStream",
+   "Properties": {
+    "LogGroupName": {
+     "Ref": "IoTCollectorDeliveryStreamLogGroup4D36A9F5"
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/LogGroup/S3Destination/Resource"
+   }
+  },
+  "IoTCollectorDeliveryStream05219BDE": {
+   "Type": "AWS::KinesisFirehose::DeliveryStream",
+   "Properties": {
+    "DeliveryStreamName": "IoTCollectorDeliveryStream",
+    "DeliveryStreamType": "KinesisStreamAsSource",
+    "ExtendedS3DestinationConfiguration": {
+     "BucketARN": {
+      "Fn::GetAtt": [
+       "iotcollectorbucketFA2C37C1",
+       "Arn"
+      ]
+     },
+     "CloudWatchLoggingOptions": {
+      "Enabled": true,
+      "LogGroupName": {
+       "Ref": "IoTCollectorDeliveryStreamLogGroup4D36A9F5"
+      },
+      "LogStreamName": {
+       "Ref": "IoTCollectorDeliveryStreamLogGroupS3Destination8B3FA023"
+      }
+     },
+     "RoleARN": {
+      "Fn::GetAtt": [
+       "IoTCollectorDeliveryStreamS3DestinationRoleD4F60690",
+       "Arn"
+      ]
+     }
+    },
+    "KinesisStreamSourceConfiguration": {
+     "KinesisStreamARN": {
+      "Fn::GetAtt": [
+       "IoTCollectorStream016F0836",
+       "Arn"
+      ]
+     },
+     "RoleARN": {
+      "Fn::GetAtt": [
+       "IoTCollectorDeliveryStreamServiceRole1693FD15",
+       "Arn"
+      ]
+     }
+    },
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "DependsOn": [
+    "IoTCollectorDeliveryStreamS3DestinationRoleDefaultPolicyE1231DAB",
+    "IoTCollectorDeliveryStreamServiceRoleDefaultPolicy968B0088"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IoTCollectorDeliveryStream/Resource"
+   }
+  },
+  "IotKinesisRuleCC130866": {
+   "Type": "AWS::IoT::TopicRule",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ],
+    "TopicRulePayload": {
+     "Actions": [
+      {
+       "Kinesis": {
+        "PartitionKey": "9020da4c-cb63-45f5-ae24-893385cce180",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "IotKinesisRuleTopicRuleActionRole3F299C71",
+          "Arn"
+         ]
+        },
+        "StreamName": {
+         "Ref": "IoTCollectorStream016F0836"
+        }
+       }
+      },
+      {
+       "Firehose": {
+        "BatchMode": true,
+        "DeliveryStreamName": {
+         "Ref": "IoTCollectorDeliveryStream05219BDE"
+        },
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "IotKinesisRuleTopicRuleActionRole3F299C71",
+          "Arn"
+         ]
+        },
+        "Separator": "\n"
+       }
+      }
+     ],
+     "AwsIotSqlVersion": "2016-03-23",
+     "Sql": "SELECT * FROM 'device/data'"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IotKinesisRule/Resource"
+   }
+  },
+  "IotKinesisRuleTopicRuleActionRole3F299C71": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "iot.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "env",
+      "Value": "DEV"
+     },
+     {
+      "Key": "project",
+      "Value": "ccs-001"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IotKinesisRule/TopicRuleActionRole/Resource"
+   }
+  },
+  "IotKinesisRuleTopicRuleActionRoleDefaultPolicy5C170C0E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "kinesis:PutRecord",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IoTCollectorStream016F0836",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "firehose:PutRecord",
+        "firehose:PutRecordBatch"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IoTCollectorDeliveryStream05219BDE",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IotKinesisRuleTopicRuleActionRoleDefaultPolicy5C170C0E",
+    "Roles": [
+     {
+      "Ref": "IotKinesisRuleTopicRuleActionRole3F299C71"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/IotKinesisRule/TopicRuleActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/2WQzW6DMBCEn4W7cWh4gTZUqlSlUkR6r1xYyBbjRV5DFFm8e+XiQn9OM54ZW5+8l3d5Ln2WqCunVd2lGt+lPztVdUJd+c13aICRQ2ZB9aJozOJmwbn0h7HqwIU0ukVOpLG6bfFyngWqXvqSNITqS7fl90ZTy9IfqX2yNA6hWf2R2g1jPcwiQjZo4UIMsmjMI2icwN7iHsmF9JUGrMpRwxxeKMjU6JCMKEZ21JfANNpqgVv9r+pkacIa7EExiAdmcGenWjSt+Hn5RQ0DmnYWWar0cFEyS+7jB++C+j/AcfWfORYb9iye1aR2+yz5YMTUjsZhD7Jc9BMw0rKEzgEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CcsExerciseCollectorStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "AwsCdkKinesisEncryptedStreamsUnsupportedRegions": {
+   "Fn::Or": [
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "cn-north-1"
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "cn-northwest-1"
+     ]
+    }
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Mappings": {
+  "awscdkawskinesisfirehoseCidrBlocks": {
+   "af-south-1": {
+    "FirehoseCidrBlock": "13.244.121.224/27"
+   },
+   "ap-east-1": {
+    "FirehoseCidrBlock": "18.162.221.32/27"
+   },
+   "ap-northeast-1": {
+    "FirehoseCidrBlock": "13.113.196.224/27"
+   },
+   "ap-northeast-2": {
+    "FirehoseCidrBlock": "13.209.1.64/27"
+   },
+   "ap-northeast-3": {
+    "FirehoseCidrBlock": "13.208.177.192/27"
+   },
+   "ap-south-1": {
+    "FirehoseCidrBlock": "13.232.67.32/27"
+   },
+   "ap-south-2": {
+    "FirehoseCidrBlock": "18.60.192.128/27"
+   },
+   "ap-southeast-1": {
+    "FirehoseCidrBlock": "13.228.64.192/27"
+   },
+   "ap-southeast-2": {
+    "FirehoseCidrBlock": "13.210.67.224/27"
+   },
+   "ap-southeast-3": {
+    "FirehoseCidrBlock": "108.136.221.64/27"
+   },
+   "ap-southeast-4": {
+    "FirehoseCidrBlock": "16.50.161.128/27"
+   },
+   "ca-central-1": {
+    "FirehoseCidrBlock": "35.183.92.128/27"
+   },
+   "cn-north-1": {
+    "FirehoseCidrBlock": "52.81.151.32/27"
+   },
+   "cn-northwest-1": {
+    "FirehoseCidrBlock": "161.189.23.64/27"
+   },
+   "eu-central-1": {
+    "FirehoseCidrBlock": "35.158.127.160/27"
+   },
+   "eu-central-2": {
+    "FirehoseCidrBlock": "16.62.183.32/27"
+   },
+   "eu-north-1": {
+    "FirehoseCidrBlock": "13.53.63.224/27"
+   },
+   "eu-south-1": {
+    "FirehoseCidrBlock": "15.161.135.128/27"
+   },
+   "eu-south-2": {
+    "FirehoseCidrBlock": "18.100.71.96/27"
+   },
+   "eu-west-1": {
+    "FirehoseCidrBlock": "52.19.239.192/27"
+   },
+   "eu-west-2": {
+    "FirehoseCidrBlock": "18.130.1.96/27"
+   },
+   "eu-west-3": {
+    "FirehoseCidrBlock": "35.180.1.96/27"
+   },
+   "il-central-1": {
+    "FirehoseCidrBlock": "51.16.102.0/27"
+   },
+   "me-central-1": {
+    "FirehoseCidrBlock": "3.28.159.32/27"
+   },
+   "me-south-1": {
+    "FirehoseCidrBlock": "15.185.91.0/27"
+   },
+   "sa-east-1": {
+    "FirehoseCidrBlock": "18.228.1.128/27"
+   },
+   "us-east-1": {
+    "FirehoseCidrBlock": "52.70.63.192/27"
+   },
+   "us-east-2": {
+    "FirehoseCidrBlock": "13.58.135.96/27"
+   },
+   "us-gov-east-1": {
+    "FirehoseCidrBlock": "18.253.138.96/27"
+   },
+   "us-gov-west-1": {
+    "FirehoseCidrBlock": "52.61.204.160/27"
+   },
+   "us-west-1": {
+    "FirehoseCidrBlock": "13.57.135.192/27"
+   },
+   "us-west-2": {
+    "FirehoseCidrBlock": "52.89.255.224/27"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>co.jdao</groupId>
+    <artifactId>ccsexercise</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>20</java.version>
+    </properties>
+
+    <dependencies>
+		 <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>aws-cdk-lib</artifactId>
+            <version>2.133.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/software.amazon.awscdk/iot-alpha -->
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>iot-alpha</artifactId>
+            <version>2.133.0-alpha.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/software.amazon.awscdk/iot-actions-alpha -->
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>iot-actions-alpha</artifactId>
+            <version>2.133.0-alpha.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/software.amazon.awscdk/kinesisfirehose-destinations-alpha -->
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>kinesisfirehose-destinations-alpha</artifactId>
+            <version>2.133.0-alpha.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>assertions-alpha</artifactId>
+            <version>2.0.0-alpha.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>software.constructs</groupId>
+            <artifactId>constructs</artifactId>
+            <version>10.3.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-folder</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/cdk.out</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <filtering>false</filtering>
+                                    <directory>${project.basedir}/cdk.out.dummy</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+
+</project>

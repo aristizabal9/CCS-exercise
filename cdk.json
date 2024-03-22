@@ -1,0 +1,8 @@
+{
+  "app": "mvn exec:java -Dexec.mainClass=co.jdao.iac.ccsxercise.CcsExerciseApp",
+  "requireApproval": "never",
+  "context": {
+    "project": "ccs-001",
+    "env": "DEV"
+  }
+}
